@@ -1,1 +1,9 @@
-<p>car works!</p>
+<div *ngIf="error">{{error}}</div>
+<div *ngIf="success">{{success}}</div>
+
+<div id="theList">
+    <h2>Cars</h2>
+    <ul>
+        <li *ngFor="let item of cars">{{item.model}} | {{item.price}}</li>
+    </ul>
+</div>

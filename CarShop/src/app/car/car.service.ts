@@ -13,10 +13,10 @@ export class CarService {
     constructor(private http: HttpClient) { }
 
     getAllCars() {
-        return this.http.get('${this.baseUrl}/list').pipe(
+        return this.http.get(`${this.baseUrl}/list.php`).pipe(
             map((res: any) => {
                 return res['data']
             })
-        )
+        );
     }
 }
