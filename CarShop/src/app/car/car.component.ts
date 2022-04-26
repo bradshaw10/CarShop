@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Car } from './car';
 import { CarService } from './car.service';
 
@@ -10,13 +11,19 @@ import { CarService } from './car.service';
 export class CarComponent implements OnInit {
 
   cars: Car[] = [];
+
+  car: Car = {
+    model: '',
+    price: 0
+  };
+
   error = '';
   success = '';
 
   constructor(private carService: CarService) { }
 
   ngOnInit(): void {
-    console.log("init");
+
     this.getCars();
   }
 
@@ -31,5 +38,25 @@ export class CarComponent implements OnInit {
         this.error = err;
       }
     )
+  }
+
+  addCar(form: NgForm) {
+    this.resetAlerts();
+
+    this.carService.storeCar(this.car).subscribe(
+      (res: Car) => {
+        this.cars.push(res);
+
+        this.success = `${this.car.model} Added`;
+
+        form.reset();
+      },
+      (err) => (this.error = `${this.car.model} failed: ${err.message}`)
+    );
+  }
+
+  resetAlerts() {
+    this.error = '';
+    this.success = '';
   }
 }

@@ -19,4 +19,13 @@ export class CarService {
             })
         );
     }
+
+    storeCar(car: Car) {
+        return this.http.post(`${this.baseUrl}/storeData.php`, { data: car }).pipe(
+            map((res: any) => {
+                return res['data'];
+            })
+
+        );
+    }
 }

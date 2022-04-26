@@ -7,3 +7,33 @@
         <li *ngFor="let item of cars">{{item.model}} | {{item.price}}</li>
     </ul>
 </div>
+<div id="theForm">
+    <h2>Add A Car</h2>
+    <form #form="ngForm" name="carForm" (submit)="addCar(form)">
+        <div class="form-group">
+            <label>Model</label>
+            <input type="text" class="form-control" name="model" [(ngModel)]="car.model" #carModel="ngModel" required
+                pattern="^[a-zA-Z ]+$">
+
+            <span class="help-block danger" *ngIf="carModel.errors?.['required'] && carModel.touched">
+                The model name is required
+            </span>
+            <span class="help-block danger" *ngIf="carModel.errors?.['pattern'] && carModel.touched">
+                Please enter a valid model
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" class="form-control" name="price" required [(ngModel)]="car.price" #carPrice="ngModel">
+
+            <span class="help-block danger" *ngIf="carPrice.errors?.['required'] && carPrice.touched">
+                The price is required
+            </span>
+        </div>
+
+        <button class="btn btn-primary btn-sm" [disabled]="form.invalid">
+            Add Car
+        </button>
+    </form>
+</div>
