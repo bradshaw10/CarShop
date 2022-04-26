@@ -55,6 +55,24 @@ export class CarComponent implements OnInit {
     );
   }
 
+  updateCar(name: any, price: any, id: any) {
+    this.resetAlerts();
+
+    console.log(name.value + price.value + id);
+    this.carService.updateCar({
+      model: name.value,
+      price: price.value,
+      id: +id
+    }).subscribe(
+      (res) => {
+        this.success = `${name.value} updated`;
+      },
+      (err) => (
+        this.error = `Error Updating ${name.value}: ${err}`
+      )
+    );
+  }
+
   resetAlerts() {
     this.error = '';
     this.success = '';

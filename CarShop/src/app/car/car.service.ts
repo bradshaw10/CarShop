@@ -28,4 +28,8 @@ export class CarService {
 
         );
     }
+
+    updateCar(car: Car) {
+        return this.http.put(`${this.baseUrl}/updateCar.php`, { data: car });
+    }
 }
