@@ -73,6 +73,21 @@ export class CarComponent implements OnInit {
     );
   }
 
+  deleteCar(id: number) {
+    this.resetAlerts();
+
+    this.carService.deleteCar(id).subscribe(
+      (res) => {
+        this.cars = this.cars.filter(function (item) {
+          return item['id'] && +item['id'] !== +id;
+        });
+
+        this.success = 'Car Deleted';
+      },
+      (err) => (this.error = err)
+    )
+  }
+
   resetAlerts() {
     this.error = '';
     this.success = '';

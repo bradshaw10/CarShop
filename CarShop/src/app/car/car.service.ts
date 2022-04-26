@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Car } from './car';
 import { map } from 'rxjs/operators'
@@ -31,5 +31,12 @@ export class CarService {
 
     updateCar(car: Car) {
         return this.http.put(`${this.baseUrl}/updateCar.php`, { data: car });
+    }
+
+    deleteCar(id: any) {
+        const params = new HttpParams()
+            .set('id', id.toString());
+
+        return this.http.delete(`${this.baseUrl}/deleteCar.php`, { params: params });
     }
 }
