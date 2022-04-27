@@ -4,7 +4,6 @@
 <div id="theList">
     <h2>Cars</h2>
     <div class="container">
-
         <div *ngFor="let item of cars; let i = index;" class="row">
             <div class="col-4">
                 <input type="text" [(ngModel)]="cars[i].model" class="form-control" required pattern="^[a-zA-Z ]+$"
@@ -34,21 +33,21 @@
             <input type="text" class="form-control" name="model" [(ngModel)]="car.model" #carModel="ngModel" required
                 pattern="^[a-zA-Z ]+$">
 
-            <span class="help-block danger" *ngIf="carModel.errors?.['required'] && carModel.touched">
+            <small class="help-block danger" *ngIf="carModel.errors?.['required'] && carModel.touched">
                 The model name is required
-            </span>
-            <span class="help-block danger" *ngIf="carModel.errors?.['pattern'] && carModel.touched">
+            </small>
+            <small class="help-block danger" *ngIf="carModel.errors?.['pattern'] && carModel.touched">
                 Please enter a valid model
-            </span>
+            </small>
         </div>
 
         <div class="form-group">
             <label>Price</label>
             <input type="number" class="form-control" name="price" required [(ngModel)]="car.price" #carPrice="ngModel">
 
-            <span class="help-block danger" *ngIf="carPrice.errors?.['required'] && carPrice.touched">
+            <small class="help-block danger" *ngIf="carPrice.errors?.['required'] && carPrice.touched">
                 The price is required
-            </span>
+            </small>
         </div>
 
         <button class="btn btn-primary btn-sm" [disabled]="form.invalid">
