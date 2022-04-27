@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div id="theForm">
+    <h2>Login</h2>
+    <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+    <form #form="ngForm" name="loginForm" (submit)="addlogin(form)">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="model" [(ngModel)]="login.model" #loginModel="ngModel"
+                required pattern="^[a-zA-Z ]+$">
+
+            <small class="help-block danger" *ngIf="loginModel.errors?.['required'] && loginModel.touched">
+                The model name is required
+            </small>
+            <small class="help-block danger" *ngIf="loginModel.errors?.['pattern'] && loginModel.touched">
+                Please enter a valid model
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" required [(ngModel)]="login.password"
+                #loginPassword="ngModel">
+
+            <small class="help-block danger" *ngIf="loginPassword.errors?.['required'] && loginPassword.touched">
+                The password is required
+            </small>
+        </div>
+
+        <button class="btn btn-primary btn-sm" [disabled]="form.invalid">
+            Login
+        </button>
+    </form>
+</div>
