@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { stringify } from 'querystring';
 import { Alert, Login } from './login';
 import { LoginService } from './login.service';
 

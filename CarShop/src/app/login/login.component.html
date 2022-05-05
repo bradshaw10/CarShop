@@ -4,7 +4,7 @@
     <form #form="ngForm" name="loginForm" (submit)="addlogin(form)">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="model" [(ngModel)]="login.model" #loginModel="ngModel"
+            <input type="text" class="form-control" name="model" [(ngModel)]="login.username" #loginModel="ngModel"
                 required pattern="^[a-zA-Z ]+$">
 
             <small class="help-block danger" *ngIf="loginModel.errors?.['required'] && loginModel.touched">
